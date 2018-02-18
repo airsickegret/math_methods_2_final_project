@@ -1,5 +1,6 @@
 # math_methods_2_final_project
 
+Hello, World, it’s Zaina!
 
 **Project Proposal:** Modeling Plasticity in Neuronal Networks Using the BRIAN™ Brain Simulator
 
