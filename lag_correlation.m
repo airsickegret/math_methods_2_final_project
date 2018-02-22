@@ -12,18 +12,20 @@ clear all
 
 %% 1. Load Raster Data
  
-spiketimes = load('model_spike_trains_per_neuron.mat');
+data = importfile_nicolas('exp_condition.csv', 1, 1000);
+spiketimes = table2array(data(:,:));
+% spiketimes = load('model_spike_trains_per_neuron.mat');
  
 %% 2. find silent neurons by finding logical < 5hz neurons
 % since the data that we're currently working with (our network w/ synaptic
 % plasticity) has very few spikes, we?re just going to not exclude any neurons from the analysis at % the moment. If there are zero spikes, then there are zero spikes.
  
-for iNeuron = 1:length(spiketimes.Data)
-    spiketimes.Data(iNeuron).spikes = spiketimes.Data(iNeuron).spikes(~isnan(spiketimes.Data(iNeuron).spikes));
+for iNeuron = 1:length(spiketimes)
+    temp = spiketimes(iNeuron,:);
+    temp(isnan(temp)) = [];
+    spikes{iNeuron} = temp;
 end
 
-
-spikes = {spiketimes.Data.spikes};
  
 %% 3. take all neurons that are silent and set each time point to zero.
 % for neurons that are not silent, bin at 50ms, and put a one in each bin
@@ -77,7 +79,9 @@ end
 lagcorr = (AB.*ab - Ab.*aB)/sqrt(2*(T-1));
 
 
+%% Save lagcorr matrix
 
+save('exp_condition_correlation_matrix','lagcorr')
 
 
 

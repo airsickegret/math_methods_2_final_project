@@ -27,9 +27,9 @@ end
 %	column4: double (%f)
 %   column5: double (%f)
 %	column6: double (%f)
-%   column7: text (%s)
+%   column7: douvle (%f)
 % For more information, see the TEXTSCAN documentation.
-formatSpec = '%f%f%f%f%f%f%s%[^\n\r]';
+formatSpec = '%f%f%f%f%f%f%f%[^\n\r]';
 
 %% Open the text file.
 fileID = fopen(filename,'r');
