@@ -8,11 +8,11 @@
 % Output: lagcorr, an N*N matrix of lagged correlations reflecting an adjacency matrix of neurons
 %--------------------------------------------------------------------------------------------------
 
-clear all
+clearvars
 
 %% 1. Load Raster Data
  
-data = importfile_nicolas('exp_condition.csv', 1, 1000);
+data = importfile_nicolas('./python_output/Reliable_STDP2.csv', 1, 1000);
 spiketimes = table2array(data(:,:));
 % spiketimes = load('model_spike_trains_per_neuron.mat');
  
@@ -81,7 +81,7 @@ lagcorr = (AB.*ab - Ab.*aB)/sqrt(2*(T-1));
 
 %% Save lagcorr matrix
 
-save('exp_condition_correlation_matrix','lagcorr')
+save('Reliable_STDP2_correlation_matrix','lagcorr')
 
 
 
